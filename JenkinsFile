@@ -1,4 +1,3 @@
-// Jenkinsfile (without Maven)
 pipeline {
     agent any
 
@@ -10,12 +9,12 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'javac src/main/java/com/example/admissionservice/AdmissionService.java src/test/java/com/example/admissionservice/AdmissionServiceTest.java -cp junit-4.13.2.jar:.'
+                sh 'javac -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. src/main/com/example/admissionservice/AdmissionService.java src/test/com/example/admissionservice/AdmissionServiceTest.java'
             }
         }
         stage('Test') {
             steps {
-                sh 'java -cp junit-4.13.2.jar:. org.junit.runner.JUnitCore com.example.admissionservice.AdmissionServiceTest'
+                sh 'java -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. org.junit.runner.JUnitCore com.example.admissionservice.AdmissionServiceTest'
             }
         }
     }

@@ -1,4 +1,3 @@
-// src/main/java/com/example/admissionservice/AdmissionService.java
 package com.example.admissionservice;
 
 public class AdmissionService {
