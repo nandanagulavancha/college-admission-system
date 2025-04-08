@@ -1,0 +1,22 @@
+// Jenkinsfile (without Maven)
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh 'javac src/main/java/com/example/admissionservice/AdmissionService.java src/test/java/com/example/admissionservice/AdmissionServiceTest.java -cp junit-4.13.2.jar:.'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'java -cp junit-4.13.2.jar:. org.junit.runner.JUnitCore com.example.admissionservice.AdmissionServiceTest'
+            }
+        }
+    }
+}
